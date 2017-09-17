@@ -37,11 +37,15 @@ router.get('/range/:from/:to', async (req, res) => {
   return res.send(verses);
 });
 
-router.get('/search/:term', async (req, res) => {
+router.get('/search/:language?/:term', async (req, res) => {
   var _text = req.params.term;
+  var _language = req.params.language;
   console.log(_text);
-  const verses = await Verse.find({text : {$regex : ".*" + _text+ ".*", $options: "i"}}).sort({surah: 1});
-  return res.send(verses);
+  if (_language === 'en') {
+    return res.send(await Verse.find({translation : {$regex : ".*" + _text+ ".*", $options: "i"}}).sort({surah: 1}));
+  } else {
+    return res.send(await Verse.find({text : {$regex : ".*" + _text+ ".*", $options: "i"}}).sort({surah: 1}));
+  }  
 });
 
 router.get('/random/:language?', async (req, res) => {

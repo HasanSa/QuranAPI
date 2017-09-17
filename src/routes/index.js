@@ -9,4 +9,10 @@ router.get('/', async (req, res) => {
 
 router.use('/', verse);
 
+router.use(function(req, res, next) {
+  var err = new Error('Not Found, Bad Request');
+  err.status = 404;
+  next(err);
+});
+
 export default router;

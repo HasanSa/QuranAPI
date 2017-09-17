@@ -14,3 +14,61 @@ describe('test routes/index.js', async () => {
     });
   });
 });
+
+describe('test routes/index.js', async () => {
+  it('should return all verses of surah 1, which must have array length equals to 7', (done) => {
+    request.get('/find/1/')
+    .end((err, res) => {
+      if (err) return done(err);
+      expect(res.body).to.be.an('array').that.have.length(7);
+      done();
+    });
+  });
+});
+
+describe('test routes/index.js', async () => {
+  it('should return verse with translation equals to "ALL PRAISE BE to Allah, Lord of all the worlds,"', (done) => {
+    request.get('/find/1/2')
+    .end((err, res) => {
+      if (err) return done(err);
+      const verses = res.body;
+      expect(verses).to.be.an('array').that.have.length(1);
+      expect(verses[0].translation).to.eql("ALL PRAISE BE to Allah, Lord of all the worlds,");
+      done();
+    });
+  });
+});
+
+describe('test routes/index.js', async () => {
+  it('should return verse with translation equals to "This is The Book" term', (done) => {
+    request.get('/search/en/This%20is%20The%20Book')
+    .end((err, res) => {
+      if (err) return done(err);
+      const verses = res.body;
+      expect(verses).to.be.an('array').that.have.length(1);
+      expect(verses[0].translation).to.eql("This is The Book free of doubt and involution, a guidance for those who preserve themselves from evil and follow the straight path,");
+      done();
+    });
+  });
+  it('should return verses length equals to 15 ', (done) => {
+    request.get('/search/en/(O%20Prophet)')
+    .end((err, res) => {
+      if (err) return done(err);
+      const verses = res.body;
+      expect(verses).to.be.an('array').that.have.length(15);
+      done();
+    });
+  });
+});
+
+describe('test routes/index.js', async () => {
+  it('should return random verse', (done) => {
+    request.get('/random/')
+    .end((err, res) => {
+      if (err) return done(err);
+      const verses = res.body;
+      expect(verses).to.be.an('array').that.have.length(1);
+      done();
+    });
+  });
+});
