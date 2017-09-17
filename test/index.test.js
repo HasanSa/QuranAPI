@@ -13,9 +13,7 @@ describe('test routes/index.js', async () => {
       done();
     });
   });
-});
 
-describe('test routes/index.js', async () => {
   it('should return all verses of surah 1, which must have array length equals to 7', (done) => {
     request.get('/find/1/')
     .end((err, res) => {
@@ -24,9 +22,7 @@ describe('test routes/index.js', async () => {
       done();
     });
   });
-});
 
-describe('test routes/index.js', async () => {
   it('should return verse with translation equals to "ALL PRAISE BE to Allah, Lord of all the worlds,"', (done) => {
     request.get('/find/1/2')
     .end((err, res) => {
@@ -37,9 +33,7 @@ describe('test routes/index.js', async () => {
       done();
     });
   });
-});
 
-describe('test routes/index.js', async () => {
   it('should return verse with translation equals to "This is The Book" term', (done) => {
     request.get('/search/en/This%20is%20The%20Book')
     .end((err, res) => {
@@ -50,6 +44,7 @@ describe('test routes/index.js', async () => {
       done();
     });
   });
+
   it('should return verses length equals to 15 ', (done) => {
     request.get('/search/en/(O%20Prophet)')
     .end((err, res) => {
@@ -59,9 +54,7 @@ describe('test routes/index.js', async () => {
       done();
     });
   });
-});
 
-describe('test routes/index.js', async () => {
   it('should return random verse', (done) => {
     request.get('/random/')
     .end((err, res) => {
