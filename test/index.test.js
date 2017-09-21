@@ -27,9 +27,9 @@ describe('test routes/index.js', async () => {
     request.get('/find/1/2')
     .end((err, res) => {
       if (err) return done(err);
-      const verses = res.body;
-      expect(verses).to.be.an('array').that.have.length(1);
-      expect(verses[0].translation).to.eql("ALL PRAISE BE to Allah, Lord of all the worlds,");
+      const verse = res.body;
+      expect(verse).to.be.an('object');
+      expect(verse.translation).to.equal("ALL PRAISE BE to Allah, Lord of all the worlds,");
       done();
     });
   });
@@ -40,7 +40,7 @@ describe('test routes/index.js', async () => {
       if (err) return done(err);
       const verses = res.body;
       expect(verses).to.be.an('array').that.have.length(1);
-      expect(verses[0].translation).to.eql("This is The Book free of doubt and involution, a guidance for those who preserve themselves from evil and follow the straight path,");
+      expect(verses[0].translation).to.equal("This is The Book free of doubt and involution, a guidance for those who preserve themselves from evil and follow the straight path,");
       done();
     });
   });
@@ -60,7 +60,7 @@ describe('test routes/index.js', async () => {
     .end((err, res) => {
       if (err) return done(err);
       const verses = res.body;
-      expect(verses).to.be.an('array').that.have.length(1);
+      expect(verses).to.be.an('object');
       done();
     });
   });

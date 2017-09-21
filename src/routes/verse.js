@@ -26,7 +26,7 @@ router.get('/find/:surah', async (req, res) => {
 router.get('/find/:surah/:verse', async (req, res) => {
   const _surah = parseInt(req.params.surah);
   const _verse = parseInt(req.params.verse);
-  const verses = await Verse.find({surah: _surah, verse: _verse});
+  const verses = await Verse.findOne({surah: _surah, verse: _verse});
   return res.send(verses);
 });
 
@@ -51,7 +51,7 @@ router.get('/search/:language?/:term', async (req, res) => {
 router.get('/random/:language?', async (req, res) => {
   var _index =  Math.floor((Math.random() * maxVerses));
   console.log("index calculated was"+_index);
-  const verses = await Verse.find({index: _index}).sort({surah: 1});;
+  const verses = await Verse.findOne({index: _index}).sort({surah: 1});;
   return res.send(verses);
 });
 
